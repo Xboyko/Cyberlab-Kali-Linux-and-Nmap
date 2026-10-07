@@ -138,4 +138,89 @@ nmap -sV -p 8000 <TARGET-IP>
 Nmap successfully detected the HTTP service running on port 8000.
 
 ---
+## 6. Verifying the HTTP Service
+
+After discovering the service with Nmap, I used `curl` to communicate with it
+directly.
+
+```bash
+curl http://<TARGET-IP>:8000/
+```
+
+![Curl HTTP verification](screenshots/viewfilesinportcyberlab.png)
+
+The server returned:
+
+```text
+Welcome to the internal dev server
+```
+
+This demonstrated that port discovery alone does not represent the entire
+investigation. After discovering a service, I could interact with it using its
+expected protocol to verify what was actually being served.
+
+---
+
+## 7. Network Traffic Analysis with Wireshark
+
+I also captured communication between Kali and the target using Wireshark.
+
+![Wireshark traffic analysis](screenshots/wiresharepreviewcyberlab.png)
+
+The capture allowed me to observe traffic generated during the lab, including
+ICMP traffic from `ping` communication with the test web server.
+
+### TCP Connection
+
+The packet capture also demonstrated the TCP connection process:
+
+```text
+SYN → SYN-ACK → ACK
+```
+
+This helped connect concepts such as the 3-way TCP handshake and HTTP requests to
+actual packets traveling between two systems.
+
+---
+
+## 8. Remediation
+
+After investigating the test service, I stopped the Python HTTP server.
+
+The objective was to remove the unnecessary listening service and reduce the
+target's network exposure.
+
+I then verified locally that the service was no longer accessible.
+
+```bash
+curl http://localhost:8000
+```
+
+![Local remediation verification](screenshots/nmapclosedportcyberlab.png)
+
+The connection failed because the HTTP server was no longer running.
+
+---
+
+## 9. External Verification
+
+Finally, I returned to Kali and rescanned TCP port 8000.
+
+```bash
+nmap -p 8000 <TARGET-IP>
+```
+
+![Post-remediation Nmap scan](screenshots/proofportisclosedcyberlab.png)
+
+Nmap reported the port as **filtered** from Kali's perspective.
+
+This reinforced an important distinction between Nmap port states. A filtered
+port does not necessarily mean that no local process exists; it means Nmap
+could not determine whether the port was open because its probes were being
+filtered.
+
+For that reason, remediation should be verified using both local system
+inspection and external network testing. No connection was formed, indicating that the port is no longer in service.
+
+---
 # Findings [WIP]
