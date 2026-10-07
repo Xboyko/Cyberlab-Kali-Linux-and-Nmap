@@ -224,3 +224,20 @@ inspection and external network testing. No connection was formed, indicating th
 
 ---
 # Findings [WIP]
+This lab demonstrated a basic security assessment and remediation workflow:
+
+```text
+Identify
+   ↓
+Discover
+   ↓
+Enumerate
+   ↓
+Investigate
+   ↓
+Verify
+   ↓
+Remediate
+   ↓
+Rescan
+```
