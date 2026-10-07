@@ -165,7 +165,7 @@ expected protocol to verify what was actually being served.
 
 I also captured communication between Kali and the target using Wireshark.
 
-![Wireshark traffic analysis](screenshots/wiresharepreviewcyberlab.png)
+![Wireshark traffic analysis](screenshots/wiresharkpreviewcyberlab.png)
 
 The capture allowed me to observe traffic generated during the lab, including
 ICMP traffic from `ping` communication with the test web server.
