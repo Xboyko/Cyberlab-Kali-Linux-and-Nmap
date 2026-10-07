@@ -96,4 +96,46 @@ This is important because exposed ports can indicate network-accessible
 services that should be investigated.
 
 ---
+## 4. Service Enumeration
+
+Finding an open port does not always explain what software is responsible
+for it. I therefore performed service/version detection.
+
+```bash
+nmap -sV <TARGET-IP>
+```
+
+![Nmap service enumeration](screenshots/viewversionscyberlab.png)
+
+The `-sV` option attempts to identify the services responding on discovered
+ports.
+
+### What I Learned
+
+There is an important difference between identifying an open port and
+understanding the service behind that port.
+
+---
+## 5. Creating a Controlled Test Service
+
+To better understand how applications create network exposure, I intentionally
+started a Python3 HTTP server in the lab.
+
+```bash
+python3 -m http.server 8000
+```
+
+The server created a network service listening on TCP port `8000`.
+
+From Kali, I scanned that specific port:
+
+```bash
+nmap -sV -p 8000 <TARGET-IP>
+```
+
+![Python server Nmap scan](screenshots/viewopenportcyberlab.png)
+
+Nmap successfully detected the HTTP service running on port 8000.
+
+---
 # Findings [WIP]
