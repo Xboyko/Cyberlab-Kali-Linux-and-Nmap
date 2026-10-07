@@ -24,15 +24,39 @@ This project will document a small lab built to practice cybersecurity fundament
 - curl
 - A Python 3 HTTP server [for testing]
 
-## Procedure
-1. Identify the host IP and network
-2. Use Nmap for host discovery
-3. Scan the target for open ports
-4. Enumerate services
-5. Verify service/process mapping on target
-6. Expose a test service
-7. Assess whether it was necessary
-8. Remove the service and reduce exposure
-9. Rescan for remediation
+## Procedures
 
+## 1. Identifying Network Configuration
+
+The first step was identifying the network configuration of both systems.
+
+I used:
+
+```bash
+ip addr
+ip route
+```
+
+This allowed me to identify each system's IPv4 address, network interface,
+and routing configuration.
+
+### Kali Linux
+
+Kali was used as the system performing network reconnaissance and testing.
+
+![Kali network configuration](screenshots/kaliinfocyberlab.png)
+
+### Ubuntu Target
+
+Ubuntu served as the target system for the lab.
+
+![Ubuntu network configuration](screenshots/ubuntuinfocyberlab.png)
+
+### What I Learned
+
+`ip addr` displays information about the network interfaces configured on a
+Linux system, while `ip route` displays how the system determines where
+network traffic should be sent.
+
+---
 # Findings [WIP]
