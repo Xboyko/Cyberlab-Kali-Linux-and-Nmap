@@ -59,4 +59,41 @@ Linux system, while `ip route` displays how the system determines where
 network traffic should be sent.
 
 ---
+
+## 2. Testing Connectivity
+
+Before performing network scans, I ensured that Kali can communicate with Ubuntu.
+
+```bash
+ping -c 4 <TARGET-IP>
+```
+
+![Connectivity test](screenshots/pingservercyberlab.png)
+
+The target successfully responded to the requests, confirming that
+the two systems could communicate.
+
+This established basic connectivity before moving on to service discovery.
+
+---
+
+## 3. Initial Port Discovery
+
+After confirming connectivity, I used Nmap to examine the target system.
+
+```bash
+nmap <TARGET-IP>
+```
+
+![Initial Nmap scan](screenshots/nmapubuntucyberlab.png)
+
+### Findings
+
+The scan demonstrated that Nmap could determine which TCP ports were reachable
+from the Kali system.
+
+This is important because exposed ports can indicate network-accessible
+services that should be investigated.
+
+---
 # Findings [WIP]
